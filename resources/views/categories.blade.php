@@ -1,32 +1,35 @@
-@extends('layouts.app')
+<x-app-layout>
+    <div class="bg-gradient-to-b from-blue-100 to-purple-100 min-h-screen py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold text-center text-gray-800 mb-12">Explore Learning Categories</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach($categories as $category)
+                    <a href="{{ route('category', $category) }}" class="block">
+                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition duration-300 hover:scale-105">
+                            @if($category->image)
+                                <img src="{{ Storage::url($category->image) }}" alt="{{ $category->name }}" class="w-full h-48 object-cover">
+                            @endif
+                            <div class="p-6">
+                                <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $category->name }}</h2>
+                                @if($category->description)
+                                    <p class="text-gray-600 mb-4">{{ Str::limit($category->description, 100) }}</p>
+                                @endif
+                                <div class="inline-flex items-center text-blue-500">
+                                    <span class="font-semibold">Start Learning</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
 
-@section('content')
-    <h1 class="section-title">All Categories</h1>
-    
-    <div class="row">
-        @forelse($categories as $category)
-            <div class="col-md-3 mb-4">
-                <div class="card h-100 category-card">
-                    @if($category->image)
-                        <img src="{{ asset('storage/' . $category->image) }}" class="card-img-top" alt="{{ $category->name }}" style="height: 150px; object-fit: cover;">
-                    @else
-                        <img src="https://via.placeholder.com/300x150?text=No+Image" class="card-img-top" alt="No Image">
-                    @endif
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ $category->name }}</h5>
-                        <p class="card-text">{{ Str::limit($category->description, 80) }}</p>
-                        <a href="{{ route('category.show', $category->slug) }}" class="btn btn-primary">Explore</a>
-                    </div>
-                </div>
+            <div class="mt-8">
+                {{ $categories->links() }}
             </div>
-        @empty
-            <div class="col-12">
-                <div class="alert alert-info">No categories available yet.</div>
-            </div>
-        @endforelse
+        </div>
     </div>
-    
-    <div class="d-flex justify-content-center mt-4">
-        {{ $categories->links() }}
-    </div>
-@endsection
+</x-app-layout>
