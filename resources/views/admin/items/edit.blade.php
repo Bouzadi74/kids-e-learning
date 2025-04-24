@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form method="POST" action="{{ route('admin.items.update', $item) }}" class="space-y-6" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.items.update', ['content' => $content->id]) }}" class="space-y-6" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -17,7 +17,7 @@
                             <x-input-label for="category_id" :value="__('Category')" />
                             <select id="category_id" name="category_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}" {{ $item->category_id == $category->id ? 'selected' : '' }}>
+                                    <option value="{{ $category->id }}" {{ $content->category_id == $category->id ? 'selected' : '' }}>
                                         {{ $category->name }}
                                     </option>
                                 @endforeach
@@ -27,21 +27,21 @@
 
                         <div>
                             <x-input-label for="title" :value="__('Title')" />
-                            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="old('title', $item->title)" required autofocus />
+                            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="old('title', $content->title)" required autofocus />
                             <x-input-error :messages="$errors->get('title')" class="mt-2" />
                         </div>
 
                         <div>
                             <x-input-label for="description" :value="__('Description')" />
-                            <textarea id="description" name="description" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('description', $item->description) }}</textarea>
+                            <textarea id="description" name="description" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ old('description', $content->description) }}</textarea>
                             <x-input-error :messages="$errors->get('description')" class="mt-2" />
                         </div>
 
                         <div>
                             <x-input-label for="image" :value="__('Image')" />
-                            @if($item->image)
+                            @if($content->image)
                                 <div class="mt-2">
-                                    <img src="{{ Storage::url($item->image) }}" alt="Current image" class="h-32 w-32 object-cover">
+                                    <img src="{{ Storage::url($content->image) }}" alt="Current image" class="h-32 w-32 object-cover">
                                 </div>
                             @endif
                             <x-text-input id="image" name="image" type="file" class="mt-1 block w-full" accept="image/*" />
@@ -50,10 +50,10 @@
 
                         <div>
                             <x-input-label for="audio" :value="__('Audio')" />
-                            @if($item->audio)
+                            @if($content->audio)
                                 <div class="mt-2">
                                     <audio controls>
-                                        <source src="{{ Storage::url($item->audio) }}" type="audio/mpeg">
+                                        <source src="{{ Storage::url($content->audio) }}" type="audio/mpeg">
                                         Your browser does not support the audio element.
                                     </audio>
                                 </div>
@@ -64,10 +64,10 @@
 
                         <div>
                             <x-input-label for="video" :value="__('Video')" />
-                            @if($item->video)
+                            @if($content->video)
                                 <div class="mt-2">
                                     <video controls class="h-48 w-full object-cover">
-                                        <source src="{{ Storage::url($item->video) }}" type="video/mp4">
+                                        <source src="{{ Storage::url($content->video) }}" type="video/mp4">
                                         Your browser does not support the video element.
                                     </video>
                                 </div>
@@ -78,7 +78,7 @@
 
                         <div>
                             <label class="flex items-center">
-                                <input type="checkbox" name="is_featured" class="rounded border-gray-300 text-indigo-600 shadow-sm" {{ $item->is_featured ? 'checked' : '' }}>
+                                <input type="checkbox" name="is_featured" class="rounded border-gray-300 text-indigo-600 shadow-sm" {{ $content->is_featured ? 'checked' : '' }}>
                                 <span class="ml-2 text-sm text-gray-600">{{ __('Featured Item') }}</span>
                             </label>
                         </div>

@@ -13,8 +13,8 @@ class ItemController extends Controller
 {
     public function index()
     {
-        $items = Content::with('category')->latest()->paginate(10);
-        return view('admin.items.index', compact('items'));
+        $contents = Content::with('category')->latest()->paginate(10);
+        return view('admin.items.index', compact('contents'));
     }
 
     public function create()
@@ -58,19 +58,19 @@ class ItemController extends Controller
             $data['video'] = $videoPath;
         }
 
-        Content::create($data);
+        $content = Content::create($data);
 
         return redirect()->route('admin.items.index')
             ->with('success', 'Item created successfully');
     }
 
-    public function edit(Content $item)
+    public function edit(Content $content)
     {
         $categories = Category::all();
-        return view('admin.items.edit', compact('item', 'categories'));
+        return view('admin.items.edit', compact('content', 'categories'));
     }
 
-    public function update(Request $request, Content $item)
+    public function update(Request $request, Content $content)
     {
         $request->validate([
             'category_id' => 'required|exists:categories,id',
@@ -91,32 +91,51 @@ class ItemController extends Controller
         ];
 
         if ($request->hasFile('image')) {
-            if ($item->image) {
-                Storage::disk('public')->delete($item->image);
+            if ($content->image) {
+                Storage::disk('public')->delete($content->image);
             }
             $imagePath = $request->file('image')->store('contents/images', 'public');
             $data['image'] = $imagePath;
         }
 
         if ($request->hasFile('audio')) {
-            if ($item->audio) {
-                Storage::disk('public')->delete($item->audio);
+            if ($content->audio) {
+                Storage::disk('public')->delete($content->audio);
             }
             $audioPath = $request->file('audio')->store('contents/audios', 'public');
             $data['audio'] = $audioPath;
         }
 
         if ($request->hasFile('video')) {
-            if ($item->video) {
-                Storage::disk('public')->delete($item->video);
+            if ($content->video) {
+                Storage::disk('public')->delete($content->video);
             }
             $videoPath = $request->file('video')->store('contents/videos', 'public');
             $data['video'] = $videoPath;
         }
 
-        $item->update($data);
+        $content->update($data);
 
         return redirect()->route('admin.items.index')
             ->with('success', 'Item updated successfully');
+    }
+
+    public function destroy(Content $content)
+    {
+        // Delete associated files if they exist
+        if ($content->image) {
+            Storage::disk('public')->delete($content->image);
+        }
+        if ($content->audio) {
+            Storage::disk('public')->delete($content->audio);
+        }
+        if ($content->video) {
+            Storage::disk('public')->delete($content->video);
+        }
+
+        $content->delete();
+
+        return redirect()->route('admin.items.index')
+            ->with('success', 'Item deleted successfully');
     }
 }

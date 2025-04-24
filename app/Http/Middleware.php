@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\UpdateUserLastActiveAt;
 use Illuminate\Foundation\Http\Middleware\ValidatePostSize;
 use Illuminate\Http\Middleware\HandleCors;
 use Illuminate\Http\Middleware\TrustProxies;
@@ -26,6 +27,7 @@ class Middleware
             ShareErrorsFromSession::class,
             TrimStrings::class,
             ConvertEmptyStringsToNull::class,
+            UpdateUserLastActiveAt::class,
         ]);
 
         $middleware->alias([

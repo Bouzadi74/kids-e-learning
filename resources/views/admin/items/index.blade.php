@@ -31,13 +31,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($items as $item)
+                                @foreach ($contents as $content)
                                     <tr class="bg-white border-b">
-                                        <td class="px-6 py-4">{{ $item->title }}</td>
-                                        <td class="px-6 py-4">{{ $item->category->name }}</td>
-                                        <td class="px-6 py-4">{{ $item->is_featured ? 'Yes' : 'No' }}</td>
+                                        <td class="px-6 py-4">{{ $content->title }}</td>
+                                        <td class="px-6 py-4">{{ $content->category->name }}</td>
+                                        <td class="px-6 py-4">{{ $content->is_featured ? 'Yes' : 'No' }}</td>
                                         <td class="px-6 py-4">
-                                            <a href="{{ route('admin.items.edit', $item) }}" class="text-blue-500 hover:text-blue-700 mr-2">Edit</a>
+                                            <form action="{{ route('admin.items.destroy', $content) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -46,7 +50,7 @@
                     </div>
 
                     <div class="mt-4">
-                        {{ $items->links() }}
+                        {{ $contents->links() }}
                     </div>
                 </div>
             </div>
