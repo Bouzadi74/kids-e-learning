@@ -76,6 +76,11 @@
                                 </div>
                             </div>
                         @endforeach
+                        @if($contents->count() > 1)
+                            <div class="flex items-center justify-center col-span-full mt-4">
+                                <span class="text-lg text-gray-500 italic">...and more</span>
+                            </div>
+                        @endif
                     </div>
                     <div class="mt-8">
                         {{ $contents->links() }}

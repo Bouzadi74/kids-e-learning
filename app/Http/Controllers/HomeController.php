@@ -27,7 +27,7 @@ class HomeController extends Controller
     
     public function categories()
     {
-        $categories = Category::withCount('contents')->paginate(12);
+        $categories = Category::with(['contents'])->get();
         return view('categories', compact('categories'));
     }
     
@@ -36,17 +36,13 @@ class HomeController extends Controller
         // Debug information
         \Log::info('Category ID: ' . $category->id);
         \Log::info('Category Name: ' . $category->name);
-        
-        $contents = $category->contents()
-            ->with('category')
-            ->latest();
-            
+
+        $contentsQuery = $category->contents()->with('category')->latest();
         // Debug query
-        \Log::info('SQL Query: ' . $contents->toSql());
-        \Log::info('Query Bindings: ' . json_encode($contents->getBindings()));
-        
-        $contents = $contents->paginate(12);
-        
+        \Log::info('SQL Query: ' . $contentsQuery->toSql());
+        \Log::info('Query Bindings: ' . json_encode($contentsQuery->getBindings()));
+
+        $contents = $contentsQuery->paginate(12);
         // Debug results
         \Log::info('Total Contents: ' . $contents->total());
         
