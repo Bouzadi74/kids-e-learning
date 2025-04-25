@@ -13,7 +13,7 @@ class Category extends Model
 
     public function contents()
     {
-        return $this->hasMany(Content::class);
+        return $this->hasMany(Content::class, 'category_id', 'id');
     }
     
     public function getRouteKeyName()

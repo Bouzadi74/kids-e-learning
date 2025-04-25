@@ -4,11 +4,14 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ItemController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/categories', [HomeController::class, 'categories'])->name('categories');
-Route::get('/categories/{category}', [HomeController::class, 'category'])->name('category');
-Route::get('/categories/{category}/content/{content}', [HomeController::class, 'content'])->name('content');
+Route::get('/categories/{category_slug}/content/{content_slug}', [HomeController::class, 'content'])->name('content');
+Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('categories.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

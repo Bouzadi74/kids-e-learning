@@ -5,7 +5,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($categories as $category)
                     <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                        <a href="{{ route('category', $category->slug) }}" class="block transform transition duration-300 hover:scale-105">
+                        <a href="{{ route('categories.show', $category->slug) }}" class="block transform transition duration-300 hover:scale-105">
                             <div class="relative">
                                 @if($category->image)
                                     <img src="{{ Storage::url($category->image) }}" alt="{{ $category->name }}" class="w-full h-48 object-cover">

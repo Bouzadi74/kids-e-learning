@@ -34,26 +34,31 @@ class HomeController extends Controller
     public function category(Category $category)
     {
         // Debug information
-        \Log::info('Category ID: ' . $category->id);
-        \Log::info('Category Name: ' . $category->name);
+        \Illuminate\Support\Facades\Log::info('Category ID: ' . $category->id);
+        \Illuminate\Support\Facades\Log::info('Category Name: ' . $category->name);
 
         $contentsQuery = $category->contents()->with('category')->latest();
         // Debug query
-        \Log::info('SQL Query: ' . $contentsQuery->toSql());
-        \Log::info('Query Bindings: ' . json_encode($contentsQuery->getBindings()));
+        \Illuminate\Support\Facades\Log::info('SQL Query: ' . $contentsQuery->toSql());
+        \Illuminate\Support\Facades\Log::info('Query Bindings: ' . json_encode($contentsQuery->getBindings()));
 
         $contents = $contentsQuery->paginate(12);
         // Debug results
-        \Log::info('Total Contents: ' . $contents->total());
+        \Illuminate\Support\Facades\Log::info('Total Contents: ' . $contents->total());
         
         return view('category', compact('category', 'contents'));
     }
     
-    public function content(Category $category, Content $content)
+    public function content(string $category_slug, string $content_slug)
     {
-        if ($content->category_id !== $category->id) {
-            abort(404);
-        }
+        // Trouver les modèles manuellement
+        $category = Category::where('slug', $category_slug)->firstOrFail();
+        $content = Content::where('slug', $content_slug)->where('category_id', $category->id)->firstOrFail();
+        
+        // La vérification $content->category_id !== $category->id est maintenant implicite dans la requête ci-dessus
+        // if ($content->category_id !== $category->id) {
+        //     abort(404);
+        // }
         
         return view('content', compact('category', 'content'));
     }

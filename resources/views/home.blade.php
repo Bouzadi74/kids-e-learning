@@ -74,7 +74,7 @@
                 <h2 class="text-4xl font-extrabold text-center text-yellow-500 mb-12 font-comic drop-shadow-lg">Catégories d'Apprentissage</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                     @foreach($categories as $category)
-                        <a href="{{ route('category', $category) }}" class="block">
+                        <a href="{{ route('categories.show', $category->slug) }}" class="block">
                             <div class="bg-gradient-to-br from-{{ ['pink', 'blue', 'green', 'yellow'][$loop->index % 4] }}-300 to-{{ ['purple', 'indigo', 'teal', 'orange'][$loop->index % 4] }}-400 rounded-3xl border-4 border-white shadow-xl p-8 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl animate-pop relative">
                                 @if($category->image)
                                     <img src="{{ Storage::url($category->image) }}" alt="{{ $category->name }}" class="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-yellow-200 bg-white">
