@@ -32,6 +32,7 @@ class ItemController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'audio' => 'nullable|mimes:mp3,wav|max:5120',
             'video' => 'nullable|mimes:mp4,mov,avi|max:20480',
+            'website_url' => 'nullable|url',
             'is_featured' => 'nullable|boolean',
         ]);
 
@@ -40,6 +41,7 @@ class ItemController extends Controller
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'description' => $request->description,
+            'website_url' => $request->website_url,
             'is_featured' => $request->has('is_featured'),
         ];
 
@@ -79,6 +81,7 @@ class ItemController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'audio' => 'nullable|mimes:mp3,wav|max:5120',
             'video' => 'nullable|mimes:mp4,mov,avi|max:20480',
+            'website_url' => 'nullable|url',
             'is_featured' => 'nullable|boolean',
         ]);
 
@@ -87,6 +90,7 @@ class ItemController extends Controller
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'description' => $request->description,
+            'website_url' => $request->website_url,
             'is_featured' => $request->has('is_featured'),
         ];
 

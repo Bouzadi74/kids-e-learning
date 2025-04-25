@@ -1,36 +1,36 @@
 <x-app-layout>
-    <div class="bg-gradient-to-b from-blue-100 to-purple-100 min-h-screen">
-        <!-- Category Header -->
-        <div class="py-12 bg-gradient-to-r from-blue-500 to-purple-500">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    @if($category->image)
-                        <img src="{{ Storage::url($category->image) }}" alt="{{ $category->name }}" class="w-32 h-32 mx-auto rounded-full mb-6 border-4 border-white shadow-lg">
-                    @else
-                        <div class="w-32 h-32 mx-auto rounded-full mb-6 border-4 border-white shadow-lg bg-white flex items-center justify-center">
-                            <svg class="w-16 h-16 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                            </svg>
-                        </div>
-                    @endif
-                    <h1 class="text-4xl font-bold text-white mb-4">{{ $category->name }}</h1>
+    <div class="bg-gradient-to-b from-pink-100 via-yellow-100 to-blue-100 min-h-screen">
+        <!-- Category Header (harmonized with home page, cartoon image) -->
+        <div class="py-16 bg-gradient-to-r from-pink-400 via-yellow-300 to-blue-400 relative overflow-hidden">
+            <div class="absolute left-0 top-0 w-40 h-40 bg-pink-200 rounded-full opacity-60 blur-2xl animate-bounce-slow"></div>
+            <div class="absolute right-0 bottom-0 w-40 h-40 bg-blue-200 rounded-full opacity-60 blur-2xl animate-bounce-slow"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center gap-8">
+                <div class="flex-1 text-center md:text-left">
+                    <h1 class="text-5xl font-extrabold text-white mb-6 font-comic drop-shadow-lg tracking-wide animate-bounce">{{ $category->name }}</h1>
                     @if($category->description)
-                        <p class="text-xl text-white">{{ $category->description }}</p>
+                        <p class="text-2xl text-white mb-8 font-comic drop-shadow-md">{{ $category->description }}</p>
                     @endif
-                    <div class="flex justify-center mt-6 space-x-4">
-                        <div class="bg-white bg-opacity-20 rounded-lg px-4 py-2 text-white">
+                    <div class="flex justify-center md:justify-start mt-6 space-x-4">
+                        <div class="bg-pink-100 rounded-3xl border-4 border-pink-200 px-4 py-2 text-pink-700 text-center shadow-xl">
                             <div class="text-2xl font-bold">{{ $contents->total() ?? rand(5, 20) }}</div>
-                            <div class="text-sm">Lessons</div>
+                            <div class="text-sm font-comic">Leçons</div>
                         </div>
-                        <div class="bg-white bg-opacity-20 rounded-lg px-4 py-2 text-white">
+                        <div class="bg-yellow-100 rounded-3xl border-4 border-yellow-200 px-4 py-2 text-yellow-700 text-center shadow-xl">
                             <div class="text-2xl font-bold">{{ rand(2, 8) }}</div>
-                            <div class="text-sm">Hours</div>
+                            <div class="text-sm font-comic">Heures</div>
                         </div>
-                        <div class="bg-white bg-opacity-20 rounded-lg px-4 py-2 text-white">
+                        <div class="bg-blue-100 rounded-3xl border-4 border-blue-200 px-4 py-2 text-blue-700 text-center shadow-xl">
                             <div class="text-2xl font-bold">{{ rand(85, 99) }}%</div>
-                            <div class="text-sm">Success Rate</div>
+                            <div class="text-sm font-comic">Taux de réussite</div>
                         </div>
                     </div>
+                </div>
+                <div class="flex-1 flex justify-center">
+                    @if($category->image)
+                        <img src="{{ Storage::url($category->image) }}" alt="{{ $category->name }}" class="w-72 h-72 object-contain drop-shadow-2xl rounded-full border-8 border-white bg-yellow-100 animate-pop" />
+                    @else
+                        <img src="/logo.png" class="w-32 h-32 object-contain" />
+                    @endif
                 </div>
             </div>
         </div>
@@ -41,21 +41,22 @@
                 @if($contents->count() > 0)
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         @foreach($contents as $content)
-                            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
+                            <div class="bg-white rounded-3xl border-4 border-yellow-200 shadow-xl overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl animate-pop relative">
                                 @if($content->image)
-                                    <img src="{{ Storage::url($content->image) }}" alt="{{ $content->title }}" class="w-full h-48 object-cover">
+                                    <img src="{{ Storage::url($content->image) }}" alt="{{ $content->title }}" class="w-full h-48 object-cover rounded-t-3xl">
+                                @else
+                                    <img src="https://cdn.pixabay.com/photo/2014/04/03/10/32/children-312601_1280.png" alt="Cartoon Kids" class="w-full h-48 object-cover rounded-t-3xl">
                                 @endif
                                 <div class="p-6">
-                                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $content->title }}</h2>
-                                    <p class="text-gray-600 mb-4">{{ Str::limit($content->description, 100) }}</p>
-                                    
+                                    <h2 class="text-2xl font-bold mb-3 font-comic {{ ['text-pink-700','text-blue-700','text-green-700','text-yellow-700'][$loop->index % 4] }}">{{ $content->title }}</h2>
+                                    <p class="text-gray-600 mb-4 font-comic">{{ Str::limit($content->description, 100) }}</p>
                                     <div class="flex flex-wrap gap-2 mb-4">
                                         @if($content->video)
                                             <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
                                                 <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                                                     <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zm12.553 1.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/>
                                                 </svg>
-                                                Video
+                                                Vidéo
                                             </span>
                                         @endif
                                         @if($content->audio)
@@ -67,16 +68,15 @@
                                             </span>
                                         @endif
                                     </div>
-
                                     <a href="{{ route('content', ['category' => $category->slug, 'content' => $content->slug]) }}" 
-                                       class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition duration-300">
-                                        Start Learning
+                                       class="inline-block bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded-full transition duration-300 shadow-md hover:scale-110">
+                                        Commencer
                                     </a>
+                                    <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/children-1294361_1280.png" alt="Cartoon Decoration" class="absolute -bottom-8 right-2 w-16 h-16 opacity-70 hidden md:block" />
                                 </div>
                             </div>
                         @endforeach
                     </div>
-
                     <div class="mt-8">
                         {{ $contents->links() }}
                     </div>
@@ -118,16 +118,15 @@
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         @foreach($sampleContents as $content)
-                            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
-                                <div class="h-48 bg-gradient-to-r from-blue-400 to-purple-400 flex items-center justify-center">
+                            <div class="bg-gradient-to-br from-pink-100 via-yellow-100 to-blue-100 rounded-3xl border-4 border-white shadow-xl overflow-hidden transform transition duration-300 hover:scale-105">
+                                <div class="h-48 bg-gradient-to-r from-pink-200 via-yellow-200 to-blue-200 flex items-center justify-center">
                                     <svg class="w-24 h-24 text-white opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                     </svg>
                                 </div>
                                 <div class="p-6">
-                                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $content['title'] }}</h2>
+                                    <h2 class="text-2xl font-bold mb-3 font-comic {{ ['text-pink-700','text-blue-700','text-green-700','text-yellow-700'][$loop->index % 4] }}">{{ $content['title'] }}</h2>
                                     <p class="text-gray-600 mb-4">{{ $content['description'] }}</p>
-                                    
                                     <div class="flex flex-wrap gap-2 mb-4">
                                         @foreach($content['type'] as $type)
                                             @if($type === 'video')
@@ -154,8 +153,7 @@
                                             {{ $content['duration'] }}
                                         </span>
                                     </div>
-
-                                    <button class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition duration-300">
+                                    <button class="inline-block bg-pink-400 hover:bg-pink-500 text-white font-extrabold py-2 px-6 rounded-full transition duration-300 shadow-lg hover:scale-110 animate-wiggle">
                                         Start Learning
                                     </button>
                                 </div>

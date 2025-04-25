@@ -12,28 +12,36 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
+                'name' => 'Learning English (9-12)',
+                'description' => 'English language learning activities and resources for kids aged 9-12',
+            ],
+            [
                 'name' => 'Alphabet',
                 'description' => 'Learn the ABCs, letter recognition, and phonics',
             ],
             [
-                'name' => 'Numbers',
-                'description' => 'Counting, basic math, and number recognition',
+                'name' => 'Coding for Kids',
+                'description' => 'Fun and interactive coding principles and games for children',
             ],
             [
-                'name' => 'Colors',
-                'description' => 'Color recognition, mixing, and creative activities',
+                'name' => 'Math Challenges',
+                'description' => 'Math puzzles, games, and challenges for ages 9-12',
             ],
             [
-                'name' => 'Animals',
-                'description' => 'Learn about different animals, their habitats, and sounds',
+                'name' => 'Science Experiments',
+                'description' => 'Hands-on science experiments and discovery for kids',
             ],
             [
-                'name' => 'Shapes',
-                'description' => 'Shape recognition, geometry basics, and creative activities',
+                'name' => 'History for Kids',
+                'description' => 'Explore history in a fun and engaging way',
             ],
             [
-                'name' => 'Science',
-                'description' => 'Simple experiments, nature exploration, and scientific concepts',
+                'name' => 'Fun Geography',
+                'description' => 'Geography games, maps, and world exploration',
+            ],
+            [
+                'name' => 'Creative Writing',
+                'description' => 'Storytelling, poetry, and creative writing prompts',
             ],
             [
                 'name' => 'Art & Creativity',

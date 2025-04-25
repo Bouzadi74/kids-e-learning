@@ -90,6 +90,17 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="website_url" class="form-label">Website URL (Optional)</label>
+                                <input type="url" name="website_url" id="website_url"
+                                    class="form-control @error('website_url') is-invalid @enderror"
+                                    value="{{ old('website_url') }}" placeholder="https://example.com">
+                                <small class="text-muted">Add a relevant website link for this item (optional).</small>
+                                @error('website_url')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
                                 <div class="form-check">
                                     <input type="checkbox" name="is_featured" id="is_featured" class="form-check-input"
                                         {{ old('is_featured') ? 'checked' : '' }}>

@@ -1,9 +1,3 @@
-
-
-
-
-
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -23,6 +17,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('audio')->nullable();
             $table->string('video')->nullable();
+            $table->string('website_url')->nullable();
             $table->boolean('is_featured')->default(false);
             $table->timestamps();
         });

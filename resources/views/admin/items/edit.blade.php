@@ -77,6 +77,12 @@
                         </div>
 
                         <div>
+                            <x-input-label for="website_url" :value="__('Website URL (Optional)')" />
+                            <x-text-input id="website_url" name="website_url" type="url" class="mt-1 block w-full" :value="old('website_url', $content->website_url)" placeholder="https://example.com" />
+                            <x-input-error :messages="$errors->get('website_url')" class="mt-2" />
+                        </div>
+
+                        <div>
                             <label class="flex items-center">
                                 <input type="checkbox" name="is_featured" class="rounded border-gray-300 text-indigo-600 shadow-sm" {{ $content->is_featured ? 'checked' : '' }}>
                                 <span class="ml-2 text-sm text-gray-600">{{ __('Featured Item') }}</span>

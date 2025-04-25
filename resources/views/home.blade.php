@@ -1,16 +1,19 @@
 <x-app-layout>
     <div class="bg-gradient-to-b from-pink-100 via-yellow-100 to-blue-100 min-h-screen">
-        <!-- Hero Section -->
+        <!-- Hero Section (with cartoon image) -->
         <div class="py-16 bg-gradient-to-r from-pink-400 via-yellow-300 to-blue-400 relative overflow-hidden">
             <div class="absolute left-0 top-0 w-40 h-40 bg-pink-200 rounded-full opacity-60 blur-2xl animate-bounce-slow"></div>
             <div class="absolute right-0 bottom-0 w-40 h-40 bg-blue-200 rounded-full opacity-60 blur-2xl animate-bounce-slow"></div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center gap-8">
+                <div class="flex-1 text-center md:text-left">
                     <h1 class="text-5xl font-extrabold text-white mb-6 font-comic drop-shadow-lg tracking-wide animate-bounce">Bienvenue dans l'Aventure d'Apprentissage des Enfants !</h1>
                     <p class="text-2xl text-white mb-8 font-comic drop-shadow-md">Découvre des façons <span class="text-yellow-200 font-bold">amusantes</span> et <span class="text-pink-200 font-bold">magiques</span> d'apprendre !</p>
                     <a href="#categories" class="inline-block bg-yellow-300 text-pink-700 font-extrabold py-3 px-10 rounded-full shadow-lg transition duration-300 hover:bg-yellow-400 hover:scale-110 animate-wiggle">
                         Commencer l'Exploration
                     </a>
+                </div>
+                <div class="flex-1 flex justify-center">
+                    <img src="/logo.png" alt="Kids Cartoon Logo" class="w-72 h-72 object-contain drop-shadow-2xl rounded-full border-8 border-white bg-yellow-100 animate-pop" />
                 </div>
             </div>
         </div>
@@ -72,14 +75,21 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                     @foreach($categories as $category)
                         <a href="{{ route('category', $category) }}" class="block">
-                            <div class="bg-gradient-to-br from-{{ ['pink', 'blue', 'green', 'yellow'][$loop->index % 4] }}-300 to-{{ ['purple', 'indigo', 'teal', 'orange'][$loop->index % 4] }}-400 rounded-3xl border-4 border-white shadow-xl p-8 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl animate-pop">
+                            <div class="bg-gradient-to-br from-{{ ['pink', 'blue', 'green', 'yellow'][$loop->index % 4] }}-300 to-{{ ['purple', 'indigo', 'teal', 'orange'][$loop->index % 4] }}-400 rounded-3xl border-4 border-white shadow-xl p-8 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl animate-pop relative">
                                 @if($category->image)
                                     <img src="{{ Storage::url($category->image) }}" alt="{{ $category->name }}" class="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-yellow-200 bg-white">
+                                @else
+                                    <img src="https://cdn.pixabay.com/photo/2023/02/17/15/23/ai-generated-7796260_1280.jpg" alt="Cartoon Kids" class="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-yellow-200 bg-white">
                                 @endif
-                                <h3 class="text-2xl font-extrabold text-white mb-2 font-comic drop-shadow">{{ $category->name }}</h3>
+                                <h3 class="text-2xl font-extrabold mb-2 font-comic drop-shadow 
+                                    {{ ['text-pink-700','text-blue-700','text-green-700','text-yellow-700'][$loop->index % 4] }}
+                                ">{{ $category->name }}</h3>
                                 @if($category->description)
-                                    <p class="text-white text-opacity-90 font-comic">{{ Str::limit($category->description, 60) }}</p>
+                                    <p class="font-comic 
+                                        {{ ['text-pink-900','text-blue-900','text-green-900','text-yellow-900'][$loop->index % 4] }}
+                                    ">{{ Str::limit($category->description, 60) }}</p>
                                 @endif
+                                <img src="/logo.png" alt="Cartoon Decoration" class="absolute -bottom-8 right-2 w-16 h-16 opacity-70 hidden md:block" />
                             </div>
                         </a>
                     @endforeach
