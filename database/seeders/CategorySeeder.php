@@ -12,16 +12,28 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Mathematics',
-                'description' => 'Fun with numbers, shapes, and problem-solving activities for kids',
+                'name' => 'Alphabet',
+                'description' => 'Learn the ABCs, letter recognition, and phonics',
+            ],
+            [
+                'name' => 'Numbers',
+                'description' => 'Counting, basic math, and number recognition',
+            ],
+            [
+                'name' => 'Colors',
+                'description' => 'Color recognition, mixing, and creative activities',
+            ],
+            [
+                'name' => 'Animals',
+                'description' => 'Learn about different animals, their habitats, and sounds',
+            ],
+            [
+                'name' => 'Shapes',
+                'description' => 'Shape recognition, geometry basics, and creative activities',
             ],
             [
                 'name' => 'Science',
-                'description' => 'Explore the natural world, simple experiments, and scientific concepts',
-            ],
-            [
-                'name' => 'Language Arts',
-                'description' => 'Reading, writing, vocabulary, and storytelling adventures',
+                'description' => 'Simple experiments, nature exploration, and scientific concepts',
             ],
             [
                 'name' => 'Art & Creativity',
@@ -30,10 +42,6 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Music',
                 'description' => 'Songs, rhythm, basic instruments, and musical appreciation',
-            ],
-            [
-                'name' => 'Social Studies',
-                'description' => 'Learn about different cultures, history, and the world around us',
             ]
         ];
 

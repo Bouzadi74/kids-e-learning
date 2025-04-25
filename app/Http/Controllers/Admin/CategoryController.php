@@ -16,6 +16,12 @@ class CategoryController extends Controller
         return view('admin.categories.index', compact('categories'));
     }
 
+    public function category(Category $category)
+    {
+        $contents = $category->contents()->latest()->paginate(12);
+        return view('category', compact('category', 'contents'));
+    }
+
     public function create()
     {
         return view('admin.categories.create');

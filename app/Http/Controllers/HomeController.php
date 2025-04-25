@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Content;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -32,7 +33,23 @@ class HomeController extends Controller
     
     public function category(Category $category)
     {
-        $contents = $category->contents()->latest()->paginate(12);
+        // Debug information
+        \Log::info('Category ID: ' . $category->id);
+        \Log::info('Category Name: ' . $category->name);
+        
+        $contents = $category->contents()
+            ->with('category')
+            ->latest();
+            
+        // Debug query
+        \Log::info('SQL Query: ' . $contents->toSql());
+        \Log::info('Query Bindings: ' . json_encode($contents->getBindings()));
+        
+        $contents = $contents->paginate(12);
+        
+        // Debug results
+        \Log::info('Total Contents: ' . $contents->total());
+        
         return view('category', compact('category', 'contents'));
     }
     

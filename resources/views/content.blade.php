@@ -13,7 +13,7 @@
                         </svg>
                     </li>
                     <li>
-                        <a href="{{ route('category', $category) }}" class="hover:text-blue-500">{{ $category->name }}</a>
+                        <a href="{{ route('category', ['category' => $category]) }}" class="hover:text-blue-500">{{ $category->name }}</a>
                     </li>
                     <li>
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -73,7 +73,7 @@
                 <!-- Navigation Buttons -->
                 <div class="p-8 bg-gray-50 border-t">
                     <div class="flex justify-between">
-                        <a href="{{ route('category', $category) }}" 
+                        <a href="{{ route('category', ['category' => $category]) }}" 
                            class="inline-flex items-center px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-bold rounded-full transition duration-300">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd"/>
