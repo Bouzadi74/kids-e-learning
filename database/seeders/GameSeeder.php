@@ -6,6 +6,14 @@ use App\Models\Game;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
+Game::updateOrCreate(
+    ['slug' => 'math-quiz-challenge'],
+    [
+        'name' => 'Math Quiz Challenge',
+       
+    ]
+);
+
 class GameSeeder extends Seeder
 {
     public function run(): void

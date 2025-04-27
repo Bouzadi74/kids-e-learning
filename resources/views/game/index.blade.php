@@ -24,7 +24,8 @@
                                         </p>
                                     @endif
                                     
-                                    <a href="{{ route('game.play', $game) }}" 
+                                    <a href="{{ $game->website_url }}" 
+                                       target="_blank"
                                        class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition duration-200">
                                         Play Now
                                     </a>
