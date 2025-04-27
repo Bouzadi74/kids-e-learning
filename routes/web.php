@@ -2,12 +2,17 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GameController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ItemController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\FeedbackController;
+
+// Add a route for the game section
+Route::get('/game', [GameController::class, 'index'])->name('game.index');
+Route::get('/game/{game}', [GameController::class, 'play'])->name('game.play');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/categories', [HomeController::class, 'categories'])->name('categories');
