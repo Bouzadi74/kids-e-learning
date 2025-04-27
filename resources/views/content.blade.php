@@ -35,53 +35,60 @@
 
                 <!-- Content Body -->
                 <div class="p-8">
-                    <!-- Featured Image -->
-                    @if($content->image)
-                        <div class="mb-8">
-                            <img src="{{ Storage::url($content->image) }}" alt="{{ $content->title }}" 
-                                 class="w-full max-h-96 object-cover rounded-xl">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Image Column -->
+                        <div class="md:col-span-1">
+                            @if($content->image)
+                                <div class="mb-8 md:mb-0">
+                                    <img src="{{ Storage::url($content->image) }}" alt="{{ $content->title }}"
+                                         class="w-full h-auto object-cover rounded-xl shadow-lg border-4 border-yellow-300 transform hover:scale-105 transition duration-300">
+                                </div>
+                            @endif
                         </div>
-                    @endif
 
-                    <!-- Video Content -->
-                    @if($content->video)
-                        <div class="mb-8">
-                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Watch and Learn</h2>
-                            <div class="aspect-w-16 aspect-h-9">
-                                <video class="w-full rounded-xl" controls>
-                                    <source src="{{ Storage::url($content->video) }}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                        </div>
-                    @endif
+                        <!-- Content Column -->
+                        <div class="md:col-span-2">
+                            <!-- Video Content -->
+                            @if($content->video)
+                                <div class="mb-8">
+                                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Watch and Learn</h2>
+                                    <div class="aspect-w-16 aspect-h-9">
+                                        <video class="w-full rounded-xl" controls>
+                                            <source src="{{ Storage::url($content->video) }}" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                </div>
+                            @endif
 
-                    <!-- Audio Content -->
-                    @if($content->audio)
-                        <div class="mb-8">
-                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Listen and Learn</h2>
-                            <div class="bg-gray-100 p-4 rounded-xl">
-                                <audio class="w-full" controls>
-                                    <source src="{{ Storage::url($content->audio) }}" type="audio/mpeg">
-                                    Your browser does not support the audio tag.
-                                </audio>
-                            </div>
-                        </div>
-                    @endif
+                            <!-- Audio Content -->
+                            @if($content->audio)
+                                <div class="mb-8">
+                                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Listen and Learn</h2>
+                                    <div class="bg-gray-100 p-4 rounded-xl">
+                                        <audio class="w-full" controls>
+                                            <source src="{{ Storage::url($content->audio) }}" type="audio/mpeg">
+                                            Your browser does not support the audio tag.
+                                        </audio>
+                                    </div>
+                                </div>
+                            @endif
 
-                    <!-- Website Link -->
-                    @if($content->website_url)
-                        <div class="mt-8 pt-8 border-t border-gray-200">
-                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Ressource externe</h2>
-                            <a href="{{ $content->website_url }}" target="_blank" rel="noopener noreferrer"
-                               class="inline-flex items-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition duration-300 shadow-md hover:scale-105">
-                                Visiter le site
-                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                </svg>
-                            </a>
+                            <!-- Website Link -->
+                            @if($content->website_url)
+                                <div class="mt-8 pt-8 border-t border-gray-200">
+                                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Ressource externe</h2>
+                                    <a href="{{ $content->website_url }}" target="_blank" rel="noopener noreferrer"
+                                       class="inline-flex items-center px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-full transition duration-300 shadow-md hover:scale-105">
+                                        Visiter le site
+                                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
-                    @endif
+                    </div>
                 </div>
 
                 <!-- Navigation Buttons -->

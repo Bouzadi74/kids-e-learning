@@ -38,7 +38,8 @@
             </div>
         </div>
 
-        <!-- Featured Content Section -->
+        {{-- Featured Content Section --}}
+        {{--
         <div class="py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-4xl font-extrabold text-center text-pink-500 mb-12 font-comic drop-shadow-lg">Contenus Mis en Avant</h2>
@@ -53,7 +54,7 @@
                                 <p class="text-gray-600 mb-4 font-comic">{{ Str::limit($content->description, 100) }}</p>
                                 <div class="flex items-center justify-between">
                                     <span class="text-sm text-yellow-600 font-comic">{{ $content->category->name }}</span>
-                                    <a href="{{ route('content', ['category' => $content->category, 'content' => $content]) }}" 
+                                    <a href="{{ route('content', ['category' => $content->category, 'content' => $content]) }}"
                                        class="inline-flex items-center bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full transition duration-300 shadow-md hover:scale-110">
                                         Commencer
                                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,6 +68,7 @@
                 </div>
             </div>
         </div>
+        --}}
 
         <!-- Categories Section -->
         <div class="py-16 bg-white" id="categories">
