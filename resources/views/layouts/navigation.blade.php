@@ -16,6 +16,16 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
+                        
+                        <x-nav-link :href="route('feedback.create')" :active="request()->routeIs('feedback.create')">
+                            {{ __('Submit Feedback') }}
+                        </x-nav-link>
+
+                        @if (Auth::user()->is_admin)
+                            <x-nav-link :href="route('feedback.index')" :active="request()->routeIs('feedback.index')">
+                                {{ __('Manage Feedback') }}
+                            </x-nav-link>
+                        @endif
                     @endauth
                     <x-nav-link :href="route('categories')" :active="request()->routeIs('categories')">
                         {{ __('Categories') }}

@@ -30,7 +30,7 @@
                         @if($category->contents->count())
                         <div class="px-6 pb-6">
                             <ul class="space-y-2 mt-2">
-                                @foreach($category->contents as $content)
+                                @foreach($category->contents->take(3) as $content)
                                     <li class="bg-gray-50 rounded-lg p-3 shadow flex items-center justify-between hover:bg-blue-50 transition">
                                         <div>
                                             <a href="{{ route('content', [$category->slug, $content->slug]) }}" class="font-semibold text-blue-700 hover:underline">{{ $content->title }}</a>
